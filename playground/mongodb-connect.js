@@ -54,10 +54,35 @@ const {MongoClient,ObjectID}=require('mongodb');
     // });
 
 
-    db.collection('Todos').find().count().then((count)=>{
-        console.log(`Todos count : ${count}`);
-    },(err)=>{
-        console.log('Unable to fetch todo',err);
-    });
-    
+    // db.collection('Todos').find().count().then((count)=>{
+    //     console.log(`Todos count : ${count}`);
+    // },(err)=>{
+    //     console.log('Unable to fetch todo',err);
+    // });
+
+    //deleteMany
+        // db.collection('Todos').deleteMany({text:'Test'}).then((result)=>{
+        //         console.log(result);
+        //     });
+    //deleteOne
+        // db.collection('Todos').deleteOne({text:'Test'}).then((result)=>{
+        //     console.log(result);
+        // });
+    //findOneAndDelete
+        // db.collection('Todos').findOneAndDelete({completed:true}).then((result)=>{
+        //     console.log(result);
+        // });
+
+        db.collection('Users').findOneAndUpdate({_id:new ObjectID("62414ca3220a7ff880ba6935")},{
+            $set:{
+                name:'Jinal Shah'
+            },
+            $inc:{
+                age:1
+            }
+        },{
+            returnOriginal:false
+        }).then((result)=>{
+            console.log(result);
+        });
 });
